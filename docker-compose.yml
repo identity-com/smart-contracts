@@ -1,0 +1,16 @@
+version: "2.1"
+
+services:
+  ganache:
+    image: trufflesuite/ganache-cli
+    ports:
+      - 8545:8545
+    entrypoint:
+      - node
+      - ./build/cli.node.js
+      - --mnemonic=drum muscle maximum umbrella night initial prevent auction pink old fault media
+      - --host=0.0.0.0
+      - --port=8545
+      - --gasLimit=7992181
+      - --gasPrice=1000000000
+      - --defaultBalanceEther=1000
