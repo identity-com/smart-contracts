@@ -435,12 +435,7 @@ contract CvcEscrow is EternalStorage, Initializable, Pausable, CvcEscrowInterfac
         uint256 credentialItemPrice;
         CvcPricingInterface cvcPricing = pricing();
         for (uint256 i = 0; i < _credentialItemIds.length; i++) {
-            (
-
-
-
-
-            , credentialItemPrice, , , , ,) = cvcPricing.getPriceByCredentialItemId(_idv, _credentialItemIds[i]);
+            (, credentialItemPrice, , , , ,) = cvcPricing.getPriceByCredentialItemId(_idv, _credentialItemIds[i]);
             price = price.add(credentialItemPrice);
         }
         return price.mul(_batchSize);
