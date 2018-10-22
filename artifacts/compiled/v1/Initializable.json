@@ -16,13 +16,14 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405260405180807f63697669632e70726f78792e696d706c656d656e746174696f6e000000000000815250601a0190506040518091039020600019167f79c0b2e23f98c5d9493b683161fd173aa1a1b9b2d2fd27e058f18762bd4c83856001026000191614151561006f57fe5b60f58061007d6000396000f300608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635c60da1b146044575b600080fd5b348015604f57600080fd5b5060566098565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000807f79c0b2e23f98c5d9493b683161fd173aa1a1b9b2d2fd27e058f18762bd4c838560010290508054915050905600a165627a7a7230582037fc97784e2408001403a3ddcc63881aece22f6b1654e5958b6aff2e677dedef0029",
-  "deployedBytecode": "0x608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635c60da1b146044575b600080fd5b348015604f57600080fd5b5060566098565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000807f79c0b2e23f98c5d9493b683161fd173aa1a1b9b2d2fd27e058f18762bd4c838560010290508054915050905600a165627a7a7230582037fc97784e2408001403a3ddcc63881aece22f6b1654e5958b6aff2e677dedef0029",
-  "sourceMap": "189:970:13:-;;;578:39:12;;;;;;;;;;;;;;;;;;;555:62;;;406:66;555:19;;:62;;;;548:70;;;;;;189:970:13;;;;;;",
-  "deployedSourceMap": "189:970:13:-;;;;;;;;;;;;;;;;;;;;;;;;748:173:12;;8:9:-1;5:2;;;30:1;27;20:12;5:2;748:173:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;795:12;819;406:66;834:19;;819:34;;900:4;894:11;886:19;;872:43;;:::o",
+  "bytecode": "0x608060405260405180807f6376632e70726f78792e696d706c656d656e746174696f6e000000000000000081525060180190506040518091039020600019167fa490aab0d89837371982f93f57ffd20c47991f88066ef92475bc8233036969bb6001026000191614151561006f57fe5b60f58061007d6000396000f300608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635c60da1b146044575b600080fd5b348015604f57600080fd5b5060566098565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000807fa490aab0d89837371982f93f57ffd20c47991f88066ef92475bc8233036969bb60010290508054915050905600a165627a7a72305820d136491671757836ecd5db131a32e2b1ea7e28e3b90ed116f28a782f97cff3b30029",
+  "deployedBytecode": "0x608060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635c60da1b146044575b600080fd5b348015604f57600080fd5b5060566098565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000807fa490aab0d89837371982f93f57ffd20c47991f88066ef92475bc8233036969bb60010290508054915050905600a165627a7a72305820d136491671757836ecd5db131a32e2b1ea7e28e3b90ed116f28a782f97cff3b30029",
+  "sourceMap": "189:970:13:-;;;576:37:12;;;;;;;;;;;;;;;;;;;553:60;;;404:66;553:19;;:60;;;;546:68;;;;;;189:970:13;;;;;;",
+  "deployedSourceMap": "189:970:13:-;;;;;;;;;;;;;;;;;;;;;;;;744:173:12;;8:9:-1;5:2;;;30:1;27;20:12;5:2;744:173:12;;;;;;;;;;;;;;;;;;;;;;;;;;;;791:12;815;404:66;830:19;;815:34;;896:4;890:11;882:19;;868:43;;:::o",
   "source": "pragma solidity ^0.4.24;\n\nimport \"./EternalStorage.sol\";\nimport \"./ImplementationStorage.sol\";\n\n\n/**\n * @title Initializable\n * @dev This contract provides basic initialization control\n */\ncontract Initializable is EternalStorage, ImplementationStorage {\n\n    /**\n    Data structures and storage layout:\n    mapping(bytes32 => bool) initialized;\n    **/\n\n    /**\n     * @dev Throws if called before contract was initialized.\n     */\n    modifier onlyInitialized() {\n        // require(initialized[implementation()]);\n        require(boolStorage[keccak256(abi.encodePacked(implementation(), \"initialized\"))], \"Contract is not initialized\");\n        _;\n    }\n\n    /**\n     * @dev Controls the initialization state, allowing to call an initialization function only once.\n     */\n    modifier initializes() {\n        address impl = implementation();\n        // require(!initialized[implementation()]);\n        require(!boolStorage[keccak256(abi.encodePacked(impl, \"initialized\"))], \"Contract is already initialized\");\n        _;\n        // initialized[implementation()] = true;\n        boolStorage[keccak256(abi.encodePacked(impl, \"initialized\"))] = true;\n    }\n}\n",
-    "ast": {
-        "exportedSymbols": {
+  "sourcePath": "./contracts/upgradeability/Initializable.sol",
+  "ast": {
+    "exportedSymbols": {
       "Initializable": [
         4781
       ]
@@ -42,7 +43,7 @@
         "src": "0:24:13"
       },
       {
-                "file": "./EternalStorage.sol",
+        "file": "./EternalStorage.sol",
         "id": 4722,
         "nodeType": "ImportDirective",
         "scope": 4782,
@@ -52,7 +53,7 @@
         "unitAlias": ""
       },
       {
-                "file": "./ImplementationStorage.sol",
+        "file": "./ImplementationStorage.sol",
         "id": 4723,
         "nodeType": "ImportDirective",
         "scope": 4782,
@@ -895,7 +896,7 @@
     "src": "0:1160:13"
   },
   "legacyAST": {
-        "exportedSymbols": {
+    "exportedSymbols": {
       "Initializable": [
         4781
       ]
@@ -915,7 +916,7 @@
         "src": "0:24:13"
       },
       {
-                "file": "./EternalStorage.sol",
+        "file": "./EternalStorage.sol",
         "id": 4722,
         "nodeType": "ImportDirective",
         "scope": 4782,
@@ -925,7 +926,7 @@
         "unitAlias": ""
       },
       {
-                "file": "./ImplementationStorage.sol",
+        "file": "./ImplementationStorage.sol",
         "id": 4723,
         "nodeType": "ImportDirective",
         "scope": 4782,
@@ -1773,5 +1774,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-09-14T13:17:20.222Z"
+  "updatedAt": "2018-10-09T19:38:41.284Z"
 }
