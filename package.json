@@ -18,7 +18,8 @@
     "solium-autofix": "solium -d contracts/ --fix",
     "predeploy-contracts": "mkdir -p ./build/contracts && find ./artifacts/deployed/ -name \\*.json -exec cp {} ./build/contracts/ \\;",
     "deploy-contracts": "cross-env ACCOUNT_PASSWORD=privatenet123 NODE_ENV=test truffle migrate --network ${NETWORK}",
-    "ci": "npm-run-all test lint"
+    "check": "npm-run-all test lint",
+    "check-ci": "npm-run-all test-contracts lint"
   },
   "repository": {
     "type": "git",

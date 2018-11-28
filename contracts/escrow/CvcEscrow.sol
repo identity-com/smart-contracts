@@ -501,7 +501,7 @@ contract CvcEscrow is EternalStorage, Initializable, Pausable, CvcEscrowInterfac
     {
         // In order to increase batch reference entropy and prevent potential collision
         // caused by small difference between two or more scope request IDs from the same batch
-        // we hash the scope request id before adding to the batch reference.
+        // we hash the scope request ID before adding to the batch reference.
         for (uint256 i = 0; i < _scopeRequestIds.length; i++) {
             // Ensure scopeRequestId is not empty & add its hash to batch reference.
             require(_scopeRequestIds[i] != 0x0, "Cannot calculate batch reference with empty scope request ID");
@@ -715,7 +715,7 @@ contract CvcEscrow is EternalStorage, Initializable, Pausable, CvcEscrowInterfac
 
     /**
     * @dev Returns placement state.
-    * @param _placementId The placement id.
+    * @param _placementId The placement ID.
     * @return PlacementState
     */
     function getPlacementState(bytes32 _placementId) internal view returns (PlacementState) {
@@ -725,7 +725,7 @@ contract CvcEscrow is EternalStorage, Initializable, Pausable, CvcEscrowInterfac
 
     /**
     * @dev Saves placement state.
-    * @param _placementId The placement id.
+    * @param _placementId The placement ID.
     * @param state Placement state.
     */
     function setPlacementState(bytes32 _placementId, PlacementState state) internal {
@@ -735,7 +735,7 @@ contract CvcEscrow is EternalStorage, Initializable, Pausable, CvcEscrowInterfac
 
     /**
     * @dev Returns placement amount.
-    * @param _placementId The placement id.
+    * @param _placementId The placement ID.
     * @return uint256
     */
     function getPlacementAmount(bytes32 _placementId) internal view returns (uint256) {
@@ -745,7 +745,7 @@ contract CvcEscrow is EternalStorage, Initializable, Pausable, CvcEscrowInterfac
 
     /**
     * @dev Saves placement amount.
-    * @param _placementId The placement id.
+    * @param _placementId The placement ID.
     * @param _amount Placement amount.
     */
     function setPlacementAmount(bytes32 _placementId, uint256 _amount) internal {
@@ -754,8 +754,8 @@ contract CvcEscrow is EternalStorage, Initializable, Pausable, CvcEscrowInterfac
     }
 
     /**
-    * @dev Returns placement attestation level.
-    * @param _placementId The placement id.
+    * @dev Returns placement credential item IDs.
+    * @param _placementId The placement ID.
     * @return bytes32[] Array of credential item IDs.
     */
     function getPlacementCredentialItemIds(bytes32 _placementId)
@@ -775,8 +775,8 @@ contract CvcEscrow is EternalStorage, Initializable, Pausable, CvcEscrowInterfac
     }
 
     /**
-    * @dev Saves placement attestation level.
-    * @param _placementId The placement id.
+    * @dev Saves placement credential item IDs.
+    * @param _placementId The placement ID.
     * @param _credentialItemIds Array of credential item IDs.
     */
     function setPlacementCredentialItemIds(bytes32 _placementId, bytes32[] _credentialItemIds) internal
@@ -791,8 +791,8 @@ contract CvcEscrow is EternalStorage, Initializable, Pausable, CvcEscrowInterfac
 
     /**
     * @dev Returns placement block number.
-    * @param _placementId The placement id.
-    * @return CvcPricingInterface.AttestationLevel
+    * @param _placementId The placement ID.
+    * @return uint256
     */
     function getPlacementBlockNumber(bytes32 _placementId) internal view returns (uint256) {
         // return placements[_placementId].blockNumber;
@@ -801,7 +801,7 @@ contract CvcEscrow is EternalStorage, Initializable, Pausable, CvcEscrowInterfac
 
     /**
     * @dev Saves placement block number.
-    * @param _placementId The placement id.
+    * @param _placementId The placement ID.
     * @param _blockNumber Placement block number.
     */
     function setPlacementBlockNumber(bytes32 _placementId, uint256 _blockNumber) internal {
