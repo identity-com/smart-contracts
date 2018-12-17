@@ -28,7 +28,7 @@ workflows:
             - deploy-contracts-to-dev
           filters:
             branches:
-              only: master
+              only: feature/CVC-919_dev_and_test_ci
 
   deploy-to-test:
     jobs:
