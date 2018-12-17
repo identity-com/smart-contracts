@@ -6,9 +6,9 @@ module.exports = {
     // local testing with ganache-cli
     ganache: {
       host: 'localhost',
+      port: 8545,
       gas: 3141592,
       gasPrice: 100000000000,
-      port: 8545,
       network_id: '*', // Match any network id
       from: '0x48089757dbc23bd8e49436247c9966ff15802978'
     },
@@ -18,13 +18,21 @@ module.exports = {
     // It currently doesn't support unlocking accounts properly
     integration: {
       host: 'localhost',
+      port: 8545,
       gas: 3141592,
       gasPrice: 100000000000,
-      port: 8545,
       network_id: '*', // Match any network id
       from: '0x48089757dbc23bd8e49436247c9966ff15802978',
       password: () => process.env.ACCOUNT_PASSWORD
-    }
+    },
+    tunnel: {
+      host: 'localhost',
+      port: 9545,
+      gas: 3141592,
+      network_id: '*', // Match any network id
+      from: '0x48089757dbc23bd8e49436247c9966ff15802978',
+      password: () => process.env.ACCOUNT_PASSWORD
+    },
   }
 };
 
