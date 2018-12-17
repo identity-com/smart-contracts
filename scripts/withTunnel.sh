@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 if [[ "${STAGE}" == "test" ]]; then
-    HOST=BLOCKCHAIN_NODE_HOST_TEST
+    HOST=$BLOCKCHAIN_NODE_HOST_TEST
 else
-    HOST=BLOCKCHAIN_NODE_HOST_DEV
+    HOST=$BLOCKCHAIN_NODE_HOST_DEV
 fi;
 
 echo "Connecting to server ${HOST}"
