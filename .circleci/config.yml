@@ -74,9 +74,9 @@ jobs:
       - run: npm install
       - *cache_save
 
-      - run: scripts/downloadArtifacts.sh ci
+      - run: scripts/downloadArtifacts.sh dev
       - run: NETWORK=tunnel STAGE=dev scripts/withTunnel.sh npm run deploy-contracts
-      - run: scripts/uploadArtifacts.sh ci
+      - run: scripts/uploadArtifacts.sh dev
 
   deploy-contracts-to-test:
     docker:
