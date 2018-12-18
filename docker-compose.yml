@@ -2,12 +2,12 @@ version: "2.1"
 
 services:
   ganache:
-    image: trufflesuite/ganache-cli
+    image: trufflesuite/ganache-cli:v6.2.4
     ports:
       - 8545:8545
     entrypoint:
       - node
-      - ./build/cli.node.js
+      - ./ganache-core.docker.cli.js
       - --mnemonic=drum muscle maximum umbrella night initial prevent auction pink old fault media
       - --host=0.0.0.0
       - --port=8545
