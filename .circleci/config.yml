@@ -1,10 +1,49 @@
-version: 2
+defaults:
+  - &cache_restore
+    restore_cache:
+      keys:
+        - v1-dependencies-{{ checksum "package.json" }}-{{checksum "package-lock.json" }}
+  - &cache_save
+    save_cache:
+      paths:
+        - node_modules
+      key: v1-dependencies-{{ checksum "package.json" }}-{{checksum "package-lock.json" }}
 
+version: 2
 workflows:
   version: 2
-  build-and-test:
+  build-and-deploy-to-dev:
     jobs:
       - build
+      - deploy-contracts-to-dev:
+          context: Development
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - build-marketplace-tx-server-latest:
+          context: Development
+          requires:
+            - deploy-contracts-to-dev
+          filters:
+            branches:
+              only: master
+
+  deploy-to-test:
+    jobs:
+      - deploy-contracts-to-test:
+          context: Development
+          filters:
+            branches:
+              only: release
+      - build-marketplace-tx-server-test:
+          context: Development
+          requires:
+            - deploy-contracts-to-test
+          filters:
+            branches:
+              only: release
 
 jobs:
   build:
@@ -17,19 +56,55 @@ jobs:
 
     steps:
       - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}-{{checksum "package-lock.json"}}
-
-      - run:
-          command: |
-            npm install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}-{{checksum "package-lock.json"}}
-
+      - *cache_restore
+      - run: npm install
+      - *cache_save
       - run: npm run check-ci
+
+  deploy-contracts-to-dev:
+    docker:
+      # image extended from circleci/node:8.9 and includes AWS CLI
+      - image: civicteam/circle-aws-node
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - *cache_restore
+      - run: npm install
+      - *cache_save
+
+      - run: scripts/downloadArtifacts.sh dev
+      - run: NETWORK=tunnel STAGE=dev scripts/withTunnel.sh npm run deploy-contracts
+      - run: scripts/uploadArtifacts.sh dev
+
+  deploy-contracts-to-test:
+    docker:
+      # image extended from circleci/node:8.9 and includes AWS CLI
+      - image: civicteam/circle-aws-node
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - *cache_restore
+      - run: npm install
+      - *cache_save
+
+      - run: scripts/downloadArtifacts.sh test
+      - run: NETWORK=tunnel STAGE=test scripts/withTunnel.sh npm run deploy-contracts
+      - run: scripts/uploadArtifacts.sh test
+
+  build-marketplace-tx-server-latest:
+    docker:
+      - image: circleci/node:8.9
+
+    steps:
+      - run: curl -d "build_parameters[CIRCLE_JOB]=build-docker-latest" "https://circleci.com/api/v1.1/project/github/civicteam/civic_js_node_server/tree/dev?circle-token=${CIRCLE_TOKEN}"
+
+  build-marketplace-tx-server-test:
+    docker:
+      - image: circleci/node:8.9
+
+    steps:
+      - run: curl -d "build_parameters[CIRCLE_JOB]=build-docker-test" "https://circleci.com/api/v1.1/project/github/civicteam/civic_js_node_server/tree/master?circle-token=${CIRCLE_TOKEN}"
