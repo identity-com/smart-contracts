@@ -21,14 +21,14 @@ workflows:
             - build
           filters:
             branches:
-              only: feature/CVC-919_dev_and_test_ci
+              only: master
       - build-marketplace-tx-server-latest:
           context: Development
           requires:
             - deploy-contracts-to-dev
           filters:
             branches:
-              only: feature/CVC-919_dev_and_test_ci
+              only: master
 
   deploy-to-test:
     jobs:
