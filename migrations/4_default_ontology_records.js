@@ -31,6 +31,15 @@ const { gasPrice } = config;
       'JSON-LD-Context',
       '0x2cd9bf92c5e20b1b410f5ace94d963a96e89156fbe65b70365e8596b37f1f165', // keccak('qwerty')
       { from: admin, gas, gasPrice }
+    ),
+    ontology.add(
+      'credential',
+      'proofOfResidence',
+      'v1.0',
+      'https://www.identity.com/',
+      'JSON-LD-Context',
+      '0x2cd9bf92c5e20b1b410f5ace94d963a96e89156fbe65b70365e8596b37f1f165', // keccak('qwerty')
+      { from: admin, gas, gasPrice }
     )
   ]);
 

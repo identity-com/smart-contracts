@@ -24,7 +24,7 @@ const { gasPrice } = config;
 
   // Unlock IDV account.
   if (config.password) {
-    const web3 = new Web3(new Web3.providers.HttpProvider(`http://${config.host}:${config.port}`));
+    const web3 = new Web3(deployer.provider);
     console.log(`>> Unlocking IDV account ${idvAddress}`);
     web3.personal.unlockAccount(idvAddress, config.password(), 36000);
     web3.personal.unlockAccount(automationTestIDV, config.password(), 36000);
@@ -32,6 +32,7 @@ const { gasPrice } = config;
   // Set Proof Of Identity price.
   const pricing = await getDeployedContract('CvcPricing');
   await Promise.all([
+    pricing.setPrice('credential', 'proofOfResidence', 'v1.0', 3000, { from: idvAddress, gas, gasPrice }),
     pricing.setPrice('credential', 'proofOfIdentity', 'v1.0', 2000, { from: idvAddress, gas, gasPrice }),
     pricing.setPrice('credential', 'proofOfAge', 'v1.0', 1000, { from: idvAddress, gas, gasPrice }),
     pricing.setPrice('credential', 'proofOfIdentity', 'v1.0', 3000, { from: automationTestIDV, gas, gasPrice })
