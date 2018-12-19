@@ -14,7 +14,7 @@ module.exports = transform(async (deployer, network, accounts) => {
   // Provision default IDR:
   const idr = '0x8935161928e65081bcaef7358e97dce1c560dc9b'; // SIP
   console.log('Crediting ETH...');
-  const ethAmount = 100;
+  const ethAmount = 10;
   await web3.eth.sendTransaction({
     from: admin,
     to: idr,
