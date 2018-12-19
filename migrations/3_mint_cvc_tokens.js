@@ -28,6 +28,9 @@ module.exports = transform(async (deployer, network, accounts) => {
   console.log('Crediting tokens...');
   const cvcAmount = 1000;
   accounts.push(idr);
+  accounts.push('0xf91a4ddfa76451d00b703311aae273f2f77cd52c');
+  accounts.push('0x3a8bc151852c3771b5933419e5c74481679789d0');
+  accounts.push('0xa27d4886302c55345a82f94436019e209c5c7bd6');
   await Promise.all(
     accounts.map(
       address => token.transfer(address, cvcAmount * ONE_CVC, { from: admin, gasPrice }).then(() => {
