@@ -53,7 +53,23 @@ The project follows the Truffle framework basic structure:
 
 All tests are running against Truffle's Ganache.
 We have the `docker-compose.yml` file with default setup for ganache to speed up environment setup.
-See `package.json` for available testing commands.
+
+To run the tests:
+
+```
+npm test
+```
+
+To run the tests with the [tenderly proxy](https://github.com/Tenderly/tenderly-cli/);
+
+```
+// in one shell
+npm run tenderly-proxy
+// in another shell
+NETWORK=proxy npm test
+```
+
+See `package.json` for other available testing commands.
 
 # Running migrations
 
