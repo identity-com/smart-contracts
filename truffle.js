@@ -12,6 +12,15 @@ module.exports = {
       network_id: '*', // Match any network id
       from: '0x48089757dbc23bd8e49436247c9966ff15802978'
     },
+    // using tenderly to improve debug and error output
+    proxy: {
+      host: 'localhost',
+      port: 9545,
+      gas: 3141592,
+      gasPrice: 100000000000,
+      network_id: '*', // Match any network id
+      from: '0x48089757dbc23bd8e49436247c9966ff15802978'
+    },
     // local or CI integration testing with a privatenet node
     // we need to separate this from the development network due to a bug with ganache-cli
     // https://github.com/trufflesuite/ganache-cli/issues/405
