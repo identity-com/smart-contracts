@@ -58,7 +58,7 @@ jobs:
       - checkout
       - *cache_restore
       - run: npm ci
-      - run: npm audit-ci
+      - run: npm run audit-ci
       - *cache_save
       - run: npm run check-ci
 
