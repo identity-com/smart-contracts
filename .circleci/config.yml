@@ -48,7 +48,7 @@ workflows:
 jobs:
   build:
     docker:
-      - image: circleci/node:8.9
+      - image: circleci/node:8.15
       - image: trufflesuite/ganache-cli
         command: [ganache, -m, 'drum muscle maximum umbrella night initial prevent auction pink old fault media', -h, '0.0.0.0', -l, '7992181', -g, '1000000000', -e, '1000']
 
@@ -98,14 +98,14 @@ jobs:
 
   build-marketplace-tx-server-latest:
     docker:
-      - image: circleci/node:8.9
+      - image: circleci/node:8.15
 
     steps:
       - run: curl -d "build_parameters[CIRCLE_JOB]=build-docker-latest" "https://circleci.com/api/v1.1/project/github/civicteam/civic_js_node_server/tree/dev?circle-token=${CIRCLE_TOKEN}"
 
   build-marketplace-tx-server-test:
     docker:
-      - image: circleci/node:8.9
+      - image: circleci/node:8.15
 
     steps:
       - run: curl -d "build_parameters[CIRCLE_JOB]=build-docker-test" "https://circleci.com/api/v1.1/project/github/civicteam/civic_js_node_server/tree/master?circle-token=${CIRCLE_TOKEN}"
