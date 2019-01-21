@@ -19,7 +19,8 @@
     "predeploy-contracts": "mkdir -p ./build/contracts && find ./artifacts/deployed/ -name \\*.json -exec cp {} ./build/contracts/ \\;",
     "deploy-contracts": "cross-env ACCOUNT_PASSWORD=privatenet123 NODE_ENV=test truffle migrate --network ${NETWORK}",
     "check": "npm-run-all test lint",
-    "check-ci": "npm-run-all test-contracts lint"
+    "check-ci": "npm-run-all test-contracts lint",
+    "audit-ci": "audit-ci --config audit-ci.json"
   },
   "repository": {
     "type": "git",
@@ -43,6 +44,7 @@
     "web3": "^0.20.6"
   },
   "devDependencies": {
+    "audit-ci": "^1.3.0",
     "babel-eslint": "^8.2.1",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
