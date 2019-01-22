@@ -5,7 +5,7 @@ which fails the build if there is any vulnerability found.
 It is possible to ignore specific errors by whitelisting them in [audit-ci config.](./audit-ci.json).
 
 ## NPM audit whitelist
-Whenever you whitelist a specific advisory it is required to refer it here and justify the whitelisting.
+Whenever you whitelist a specific advisory it is required to refer it to here and justify the whitelisting.
 
 ### Advisories
 
