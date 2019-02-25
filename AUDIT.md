@@ -11,5 +11,6 @@ Whenever you whitelist a specific advisory it is required to refer it to here an
 
 | #    | Level | Module | Title | Explanation |
 |------|-------|---------|------|-------------|
-|   |   |   |  |  |
+| 782 | Moderate | lodash | Prototype Pollution | truffle-artifactor dependency (requires major version update) |
+| 786 | Low | braces | Regular Expression Denial of Service | Solium dev dependency |
 
