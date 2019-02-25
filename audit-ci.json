@@ -2,6 +2,6 @@
   "low": true,
   "package-manager": "auto",
   "report": true,
-  "advisories": [],
+  "advisories": [782, 786],
   "whitelist": []
 }
